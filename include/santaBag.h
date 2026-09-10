@@ -1,19 +1,37 @@
 #ifndef SANTABAG_H
 #define SANTABAG_H
 
-#include "bagADT.h"
+#include <vector>
+#include <string>
 
-template <typename E>
-class SantaBag : public Bag<E> {
+struct santaBagStruct {
+    std::string playerName;
+    std::string playerList;
+    int relativeIndex;
+    bool hasChosen = false;
+    int partnerIndex = -1;
+};
+
+class SantaBag {
 public:
     SantaBag();
-    virtual ~SantaBag();
-    virtual bool addItem(const E& item) override;
-    virtual bool removeItem(E& item) override;
-    virtual bool findItem(E& item) override;
-    virtual int getSize() override;
-    virtual bool isEmpty() override;
+    SantaBag(const SantaBag& copy);
+
+    void addToBag(const std::string& name, const std::string& list, const int partIndex);
+    void randomizeBag(SantaBag& originalBag);
+    SantaBag createCopy(const SantaBag& originalBag);
+    void clearBag();
+    void setHasChosen(int index);
+
+    const int getSize() const;
+    const std::vector<santaBagStruct>& getVector() const;
+    const bool isEmpty() const;
+    bool getHasChosen(int index) const;
+
+    void printBag() const;      // Helper function
+
 private:
+    std::vector<santaBagStruct> santaBagVector;
 
 };
 
