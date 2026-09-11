@@ -17,7 +17,7 @@ public:
     SantaBag();
     SantaBag(const SantaBag& copy);
 
-    void addToBag(const std::string& name, const std::string& list, const int partIndex);
+    bool addToBag(const std::string& name, const std::string& list/*, const int partIndex*/);
     void randomizeBag(SantaBag& originalBag);
     SantaBag createCopy(const SantaBag& originalBag);
     void clearBag();

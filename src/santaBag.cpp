@@ -13,14 +13,15 @@ SantaBag::SantaBag(const SantaBag& copy) {
     std::cout << "\n[DEBUG] Copy Constructor called.\n";
 }
 
-void SantaBag::addToBag(const std::string& name, const std::string& list, const int partIndex) {
+bool SantaBag::addToBag(const std::string& name, const std::string& list/*, const int partIndex*/) {
     santaBagStruct s;
     s.playerName = name;
     s.playerList = list;
     s.relativeIndex = getSize();
-    s.hasChosen = false;
-    s.partnerIndex = partIndex;
+    //s.hasChosen = false;
+    //s.partnerIndex = partIndex;
     santaBagVector.push_back(s);
+    return true;
 }
 
 void SantaBag::randomizeBag(SantaBag& originalBag) {
@@ -74,6 +75,7 @@ bool SantaBag::getHasChosen(int index) const {
 }
 
 void SantaBag::printBag() const {
+    std::cout << "---------- BAG ROSTER " << getSize() << " ----------\n";
     for(const auto& item : santaBagVector) {
         std::cout << "Player Index: " << item.relativeIndex;
         std::cout << " | Name: " << std::setw(10) << std::left << item.playerName;

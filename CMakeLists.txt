@@ -21,8 +21,11 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 set(PROJECT_SOURCES
         src/main.cpp
         src/mainwindow.cpp
+        src/assignmentwindow.cpp
         include/mainwindow.h
+        include/assignmentwindow.h
         ui/mainwindow.ui
+        ui/assignmentwindow.ui
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
@@ -32,6 +35,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
 
         include/santaBag.h
         src/santaBag.cpp
+        resources/resources.qrc
 
     )
 # Define target properties for Android with Qt 6 as:

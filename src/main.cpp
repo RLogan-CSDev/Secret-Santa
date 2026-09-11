@@ -8,14 +8,15 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
+    /*
     SantaBag bag;
-    bag.addToBag("Robert", "Chess set, games", 1);
-    bag.addToBag("Nancy", "clothes, chocolate", 0);
-    bag.addToBag("Jack", "car, clothes, games", -1);
-    bag.addToBag("Matthew", "car, clothes, games", -1);
-    bag.addToBag("Shelby", "car, clothes, games", 6);
-    bag.addToBag("Mom", "car, clothes, games", -1);
-    bag.addToBag("Kyle", "tools, guns", 4);
+    bag.addToBag("Robert", "Chess set, games";
+    bag.addToBag("Nancy", "clothes, chocolate";
+    bag.addToBag("Jack", "car, clothes, games";
+    bag.addToBag("Matthew", "car, clothes, games";
+    bag.addToBag("Shelby", "car, clothes, games";
+    bag.addToBag("Mom", "car, clothes, games");
+    bag.addToBag("Kyle", "tools, guns");
 
     SantaBag copyBag = bag.createCopy(bag);
     copyBag.randomizeBag(bag);
@@ -23,7 +24,7 @@ int main(int argc, char *argv[])
     bag.printBag();
     std::cout << "Randomized bag\n";
     copyBag.printBag();
-
+    */
 
 
     MainWindow w;
