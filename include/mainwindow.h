@@ -20,7 +20,7 @@ public:
 private slots:
     void on_btnAdd_clicked();
 
-    void on_btnDone_clicked(bool checked);
+    void on_btnDone_clicked();
 
 private:
     Ui::MainWindow *ui;

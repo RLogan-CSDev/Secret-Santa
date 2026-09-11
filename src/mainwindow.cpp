@@ -44,8 +44,9 @@ void MainWindow::on_btnAdd_clicked()
 }
 
 
-void MainWindow::on_btnDone_clicked(bool checked)
-{
 
+void MainWindow::on_btnDone_clicked()
+{
+    ui->stackedWidget->setCurrentWidget(ui->revealPage);
 }
 
