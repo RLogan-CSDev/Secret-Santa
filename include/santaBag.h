@@ -18,10 +18,16 @@ public:
     SantaBag(const SantaBag& copy);
 
     bool addToBag(const std::string& name, const std::string& list/*, const int partIndex*/);
+    bool findItem(int searchIndex);
+    bool removeTemp(int& searchIndex, int& partnerIndex);
+    bool replaceTemp();
+    bool removePerm(int& searchIndex);
     void randomizeBag(SantaBag& originalBag);
     SantaBag createCopy(const SantaBag& originalBag);
     void clearBag();
     void setHasChosen(int index);
+    void setPartnerIndex(const int playerIndex, const int partnerIndex);
+
 
     const int getSize() const;
     const std::vector<santaBagStruct>& getVector() const;
@@ -32,7 +38,7 @@ public:
 
 private:
     std::vector<santaBagStruct> santaBagVector;
-
+    std::vector<santaBagStruct> holdingVec;
 };
 
 
