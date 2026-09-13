@@ -3,6 +3,7 @@
 #include <iomanip>
 #include <random>
 #include <algorithm>    // Useful for std::shuffle(beginning index, ending index, random bit generator)
+#include <QDebug>
 
 SantaBag::SantaBag() {
 
@@ -154,5 +155,58 @@ void SantaBag::printBag() const {
         std::cout << " | Name: " << std::setw(10) << std::left << item.playerName << "\n";
         //std::cout << " | List: " << std::setw(50) << item.playerList;
         //std::cout << " | Chosen Value: " << std::setw(10) << item.hasChosen << "\n";
+    }
+}
+
+// CHANGES START HERE
+void SantaBag::addPlayerEntry(QString& name, QString& list) {
+    // Adds a player's entry to the vector. Name is key value in map and list is the associated value (name, list).
+    playerEntry.clear();
+    playerEntry[name] = list;
+    playerEntryList.push_back(playerEntry);
+    qDebug().noquote().nospace() << "[DEBUG] Player " << name << " was added to the vector.";
+}
+
+bool SantaBag::findPlayerEntry(QString name) {
+    // Finds a player in the vector by first looping through elements in vector, then key, value pairs in mapped entries.
+    for(const auto& element : playerEntryList) {
+        for(const auto& [key, value] : element) {
+            if(key == name) {
+                qDebug().noquote().nospace() << "[DEBUG] Player " << name << " has been found.";
+                qDebug().noquote().nospace() << "[DEBUG] Associated list is " << value << ".";
+                return true;
+            }
+        }
+    }
+    qDebug().noquote().nospace() << "[DEBUG] Player " << name << " was not found.";
+    return false;
+}
+
+std::map<QString, QString> SantaBag::removePlayerEntry(QString name) {
+    // Assigns a player entry to a temporary variable, removes the player entry, then returns the temporary variable.
+    std::map<QString, QString> tempMap;
+    for(int i = 0; i < playerEntryList.size(); i++) {
+        for(const auto& [key, value] : playerEntryList[i]) {
+            if(key == name) {
+                tempMap[name] = value;
+                qDebug().noquote().nospace() << "[DEBUG] Player name: " << name << " & List: " << value << " will be removed.";
+                playerEntryList[i] = playerEntryList.back();
+                playerEntryList.pop_back();
+                return tempMap;
+            }
+        }
+    }
+    qDebug().noquote().nospace() << "[DEBUG] Empty map is returned. " << name << " was not found.";
+    tempMap[""] = "";
+    return tempMap;
+}
+
+void SantaBag::printPlayerEntry() const {
+    // Prints roster for players
+    qDebug() << "\n----------BAG ROSTER----------\n";
+    for(const auto& element : playerEntryList) {
+        for(const auto& [key, value] : element) {
+            qDebug().noquote().nospace() << "Player name: " << key << " | Player List: " << value;
+        }
     }
 }

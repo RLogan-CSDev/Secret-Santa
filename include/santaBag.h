@@ -3,6 +3,8 @@
 
 #include <vector>
 #include <string>
+#include <QString>
+#include <map>
 
 struct santaBagStruct {
     std::string playerName;
@@ -29,7 +31,6 @@ public:
     void setHasChosen(int index);
     void setPartnerIndex(const int playerIndex, const int partnerIndex);
 
-
     const int getSize() const;
     const std::vector<santaBagStruct>& getVector() const;
     const bool isEmpty() const;
@@ -40,9 +41,20 @@ public:
 
     void printBag() const;      // Helper function
 
+    // CHANGES START HERE
+    void addPlayerEntry(QString& name, QString& list);
+    bool findPlayerEntry(QString name);
+    std::map<QString, QString> removePlayerEntry(QString name);
+    void printPlayerEntry() const;
+
 private:
     std::vector<santaBagStruct> santaBagVector;
     std::vector<santaBagStruct> holdingVec;
+
+    // CHANGES START HERE
+    std::map<QString, QString> playerEntry;
+    std::vector<std::map<QString, QString>> playerEntryList;
+
 };
 
 

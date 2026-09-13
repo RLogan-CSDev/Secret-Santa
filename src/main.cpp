@@ -54,7 +54,26 @@ int main(int argc, char *argv[])
     //std::cout << "Randomized bag\n";
     //copyBag.printBag();
 
-
+    SantaBag testBag;
+    QString david = "David";
+    QString dList = "Sling and Stone";
+    testBag.addPlayerEntry(david, dList);
+    QString mark = "Mark";
+    QString mList = "Pants";
+    testBag.addPlayerEntry(mark, mList);
+    QString paul = "Paul";
+    QString pList = "Shoes & Tent";
+    testBag.addPlayerEntry(paul, pList);
+    QString matthew = "Matthew";
+    QString maList = "Scroll and Ink";
+    testBag.addPlayerEntry(matthew, maList);
+    QString peter = "Peter";
+    QString peList = "Gloves & Wine";
+    testBag.addPlayerEntry(peter, peList);
+    testBag.printPlayerEntry();
+    //testBag.findPlayerEntry("Matthew");
+    testBag.removePlayerEntry(mark);
+    testBag.printPlayerEntry();
 
     MainWindow w;
     w.show();
