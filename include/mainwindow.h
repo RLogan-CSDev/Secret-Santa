@@ -22,6 +22,12 @@ private slots:
 
     void on_btnDone_clicked();
 
+    void on_chkHasPartner_toggled(bool checked);
+
+    void on_btnDraw_clicked();
+
+    void on_btnClear_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

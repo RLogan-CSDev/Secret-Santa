@@ -35,7 +35,7 @@ bool SantaBag::findItem(int searchIndex) {
     return false;
 }
 
-bool SantaBag::removeTemp(int& searchIndex, int& partnerIndex) {
+bool SantaBag::removeTemp(int& searchIndex, int partnerIndex) {
     for(int i = 0; i < getSize(); i++) {
         if(santaBagVector[i].relativeIndex == searchIndex || (santaBagVector[i].relativeIndex == partnerIndex && partnerIndex != -1)) {
             holdingVec.push_back(santaBagVector[i]);
@@ -71,6 +71,13 @@ bool SantaBag::removePerm(int& searchIndex) {
     return false;
 }
 
+int SantaBag::randomBag() {
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_int_distribution<int> distrib(0, getSize());
+    return distrib(gen);
+}
+
 void SantaBag::randomizeBag(SantaBag& originalBag) {
     std::vector<santaBagStruct> testVec = originalBag.getVector();
     bool hasBadMatch;
@@ -92,10 +99,10 @@ void SantaBag::randomizeBag(SantaBag& originalBag) {
     } while(hasBadMatch);
 }
 
-SantaBag SantaBag::createCopy(const SantaBag& originalBag) {
+/*SantaBag SantaBag::createCopy(const SantaBag& originalBag) {
     SantaBag copyBag = originalBag;
     return copyBag;
-}
+}*/
 
 void SantaBag::clearBag() {
     santaBagVector.clear();
@@ -124,6 +131,19 @@ const bool SantaBag::isEmpty() const {
 
 bool SantaBag::getHasChosen(int index) const {
     return santaBagVector[index].hasChosen;
+}
+
+const std::string SantaBag::getPlayerName(int index) const {
+    return santaBagVector[index].playerName;
+}
+
+const int SantaBag::getRelativeIndex(int index) const {
+    std::cout << "\n[DEBUG] the relative index retrieved is " << santaBagVector[index].relativeIndex << "\n";
+    return santaBagVector[index].relativeIndex;
+}
+
+const std::string SantaBag::getPlayerList(int index) const {
+    return santaBagVector[index].playerList;
 }
 
 void SantaBag::printBag() const {

@@ -2,7 +2,8 @@
 #include "./ui_mainwindow.h"
 #include "santaBag.h"
 
-SantaBag bag;
+SantaBag primaryBag;            // Unchanging bag - keeps dropdown menu populated properly
+SantaBag backupBag;             // Performs operations such as removal
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -15,6 +16,8 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     ui->lblAddVerify->setText("");
     ui->lblInstructions->setText(INSTRUCTIONS_PROMPT);
+    ui->cboPartner->setVisible(false);
+    ui->lblPartner->setVisible(false);
 }
 
 MainWindow::~MainWindow()
@@ -28,7 +31,7 @@ void MainWindow::on_btnAdd_clicked()
     std::string name = ui->txtName->text().toStdString();
     std::string list = ui->txtList->toPlainText().toStdString();
     if(!name.empty() && !list.empty()) {
-        success = bag.addToBag(name, list);
+        success = primaryBag.addToBag(name, list);
     }
     else {
         success = false;
@@ -39,8 +42,9 @@ void MainWindow::on_btnAdd_clicked()
         ui->txtName->setText("");
         ui->txtList->setText("");
     }
-    qDebug() << "Bag size: " << bag.getSize() << "\n";
-    bag.printBag();
+    ui->txtName->setFocus();
+    qDebug() << "Bag size: " << primaryBag.getSize() << "\n";
+    primaryBag.printBag();
 }
 
 
@@ -48,5 +52,65 @@ void MainWindow::on_btnAdd_clicked()
 void MainWindow::on_btnDone_clicked()
 {
     ui->stackedWidget->setCurrentWidget(ui->revealPage);
+    ui->cboNameChoosing->addItem("", -1);
+    ui->cboPartner->addItem("", -1);
+    for(int i = 0; i < primaryBag.getSize(); i++) {
+        QString playerName = QString::fromStdString(primaryBag.getPlayerName(i));
+        ui->cboNameChoosing->addItem(playerName, i);
+        ui->cboPartner->addItem(playerName, i);
+    }
+    backupBag = primaryBag;
+}
+
+
+void MainWindow::on_chkHasPartner_toggled(bool checked)
+{
+    if(checked){
+        ui->cboPartner->setVisible(true);
+        ui->lblPartner->setVisible(true);
+    }
+    else {
+        ui->cboPartner->setVisible(false);
+        ui->lblPartner->setVisible(false);
+    }
+
+}
+
+
+void MainWindow::on_btnDraw_clicked()
+{
+    int currIndex = ui->cboNameChoosing->currentIndex() - 1;
+    qDebug() << "Player Name current is " << backupBag.getPlayerName(currIndex) << "\n";
+    int partIndex = ui->cboPartner->currentIndex() - 1;
+    qDebug() << "Partner Name current is " << backupBag.getPlayerName(partIndex) << "\n";
+    if(backupBag.removeTemp(currIndex, partIndex)) {
+        qDebug() << "The backup bag has removed some items. \n";
+    }
+    int assignedIndex = backupBag.randomBag();
+    qDebug() << "The assigned person is " << backupBag.getPlayerName(assignedIndex) << "\n";
+    QString assignedName = QString::fromStdString(backupBag.getPlayerName(assignedIndex));
+    ui->txtNameAssign->setText(assignedName);
+    QString assignedList = QString::fromStdString(backupBag.getPlayerList(assignedIndex));
+    ui->txtListAssign->setText(assignedList);
+    backupBag.printBag();
+    if(backupBag.removePerm(assignedIndex)) {
+        qDebug() << "Removed person " << backupBag.getPlayerName(assignedIndex) << " from the bag.\n";
+    }
+    backupBag.printBag();
+}
+
+
+void MainWindow::on_btnClear_clicked()
+{
+    int currIndex = ui->cboNameChoosing->currentIndex();
+    ui->cboNameChoosing->setItemData(currIndex, 0, Qt::UserRole - 1);
+    ui->cboNameChoosing->setCurrentIndex(-1);
+    ui->cboPartner->setCurrentIndex(-1);
+    on_chkHasPartner_toggled(false);
+    ui->chkHasPartner->setChecked(false);
+    ui->txtNameAssign->setText("");
+    ui->txtListAssign->setText("");
+    backupBag.replaceTemp();
+    backupBag.printBag();
 }
 
