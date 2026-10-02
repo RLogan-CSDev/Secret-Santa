@@ -18,17 +18,23 @@
     <normaloff>:/icons/santa_icon.png</normaloff>:/icons/santa_icon.png</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
+   <property name="layoutDirection">
+    <enum>Qt::LayoutDirection::LeftToRight</enum>
+   </property>
    <widget class="QStackedWidget" name="stackedWidget">
     <property name="geometry">
      <rect>
-      <x>0</x>
-      <y>0</y>
-      <width>801</width>
-      <height>601</height>
+      <x>9</x>
+      <y>9</y>
+      <width>782</width>
+      <height>582</height>
      </rect>
     </property>
+    <property name="layoutDirection">
+     <enum>Qt::LayoutDirection::LeftToRight</enum>
+    </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="setupPage">
      <widget class="QLabel" name="lblAddVerify">
@@ -109,9 +115,9 @@
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>220</y>
+        <y>370</y>
         <width>151</width>
-        <height>361</height>
+        <height>211</height>
        </rect>
       </property>
       <property name="text">

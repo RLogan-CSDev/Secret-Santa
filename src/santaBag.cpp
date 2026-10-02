@@ -76,6 +76,7 @@ void SantaBag::draw() {
                 isValid = false;
             }
         }
+        rerolls = 0;
     }
 }
 
