@@ -2,58 +2,35 @@
 #define SANTABAG_H
 
 #include <vector>
-#include <string>
-#include <QString>
-#include <map>
-
-struct santaBagStruct {
-    std::string playerName;
-    std::string playerList;
-    int relativeIndex;
-    bool hasChosen = false;
-    int partnerIndex = -1;
-};
+#include "Player.h"
 
 class SantaBag {
+private:
+    std::vector<Player> players;
+    std::vector<Player> selectionPool;
+    int playerCount = 0;
+    const int MAX_REROLLS = 100;
+    QString assignedName, assignedGift;
+
+    void initPool();
+    void removeAt(int pos);
+    int genRandIndex(int size);
+
 public:
     SantaBag();
-    SantaBag(const SantaBag& copy);
 
-    bool addToBag(const std::string& name, const std::string& list/*, const int partIndex*/);
-    bool findItem(int searchIndex);
-    bool removeTemp(int& searchIndex, int partnerIndex = -1);
-    bool replaceTemp();
-    bool removePerm(int& searchIndex);
-    int randomBag();
-    void randomizeBag(SantaBag& originalBag);
-    //SantaBag createCopy(const SantaBag& originalBag);
-    void clearBag();
-    void setHasChosen(int index);
-    void setPartnerIndex(const int playerIndex, const int partnerIndex);
+    bool add(QString n);
+    bool add(QString n, QString g);
+    bool add(QString n, QString partner, bool hasPartner);
 
-    const int getSize() const;
-    const std::vector<santaBagStruct>& getVector() const;
-    const bool isEmpty() const;
-    bool getHasChosen(int index) const;
-    const std::string getPlayerName(int index) const;
-    const int getRelativeIndex(int index) const;
-    const std::string getPlayerList(int index) const;
+    void draw();
+    QString getAssignedName(QString n);
+    QString getAssignedGift(QString n);
 
-    void printBag() const;      // Helper function
-
-    // CHANGES START HERE
-    void addPlayerEntry(QString& name, QString& list);
-    bool findPlayerEntry(QString name);
-    std::map<QString, QString> removePlayerEntry(QString name);
-    void printPlayerEntry() const;
-
-private:
-    std::vector<santaBagStruct> santaBagVector;
-    std::vector<santaBagStruct> holdingVec;
-
-    // CHANGES START HERE
-    std::map<QString, QString> playerEntry;
-    std::vector<std::map<QString, QString>> playerEntryList;
+    int getBagSize();
+    QString getPlayerNameAt(int index);
+    int getPlayerCount();
+    void printHelp();
 
 };
 

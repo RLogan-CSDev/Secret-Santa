@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "santaBag.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -24,11 +25,16 @@ private slots:
 
     void on_chkHasPartner_toggled(bool checked);
 
+    void on_btnAdd_2_clicked();
+
+    void on_btnDone_2_clicked();
+
     void on_btnDraw_clicked();
 
     void on_btnClear_clicked();
 
 private:
     Ui::MainWindow *ui;
+    SantaBag santaBag;
 };
 #endif // MAINWINDOW_H
