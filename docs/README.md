@@ -1,7 +1,7 @@
 # Secret Santa Application
 **Developer**: Robert Logan
 
-![Secret Santa App - Prototype UI Page 1](ui_prototype.png)
+![Secret Santa App - Prototype UI Page 1](assets/ui_prototype.png)
 ---
 
 ## Project Overview

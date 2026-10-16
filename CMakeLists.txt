@@ -39,6 +39,8 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         include/Player.h
         src/Player.cpp
         docs/README.md
+        docs/DataDictionary.md
+        docs/Storyboard.md
 
     )
 # Define target properties for Android with Qt 6 as:
