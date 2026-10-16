@@ -31,7 +31,7 @@ void MainWindow::on_btnAdd_clicked()
         ui->lblAddVerify->setStyleSheet("color: red;");
     }
     else {
-        if (santaBag.add(name)){
+        if (santaBag.addPlayer(name)){
             int pCount = santaBag.getPlayerCount();
             QString playerCount = "Player Count: " + QString::number(pCount);
             ui->txtName->clear();
@@ -78,8 +78,12 @@ void MainWindow::on_btnAdd_2_clicked()
         ui->lblGiftAdd->setText("Gift cannot be empty.");
         ui->lblGiftAdd->setStyleSheet("color: red;");
     }
+    else if (!ui->chkHasPartner) {
+        ui->lblGiftAdd->setText("You must choose a partner.");
+        ui->lblGiftAdd->setStyleSheet("color: red;");
+    }
     else {
-        if(santaBag.add(name, gift) && santaBag.add(name, partner, true)) {
+        if(santaBag.updatePlayer(name, gift, partner)) {
             santaBag.printHelp();
             ui->txtGift->clear();
             ui->lblGiftAdd->setText("Gift added successfully!");
@@ -100,15 +104,27 @@ void MainWindow::on_btnDone_2_clicked()
         QString name = santaBag.getPlayerNameAt(i);
         ui->cboChoosing->addItem(name, i);
     }
-    santaBag.draw();
 }
 
 
 void MainWindow::on_btnDraw_clicked()
 {
     QString name = ui->cboChoosing->currentText();
-    ui->txtAssignedName->setText(santaBag.getAssignedName(name));
-    ui->txtAssignedGift->setText(santaBag.getAssignedGift(name));
+    int index = ui->cboChoosing->currentIndex();
+    santaBag.setGiver(name);
+    if(santaBag.drawPlayer()) {
+        QString assignedName = santaBag.getAssignedName();
+        QString assignedGift = santaBag.getAssignedGift();
+        ui->txtAssignedName->setText(assignedName);
+        ui->txtAssignedGift->setText(assignedGift);
+        ui->cboChoosing->setItemData(index, 0, Qt::UserRole - 1);       // Grays out and makes current item unselectable.
+        ui->cboChoosing->setCurrentText("");
+
+    }
+    else {
+        ui->txtAssignedGift->setText("Could not complete draw.");
+    }
+
 }
 
 
@@ -117,6 +133,5 @@ void MainWindow::on_btnClear_clicked()
     ui->cboChoosing->setCurrentText("");
     ui->txtAssignedName->clear();
     ui->txtAssignedGift->clear();
-    // Figure out way to gray out and make unselectable person who just chose.
 }
 

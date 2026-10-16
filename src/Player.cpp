@@ -1,5 +1,12 @@
 #include "Player.h"
 
+Player::Player(const QString &n, const QString &g) {
+    // Default partner is player's name.
+    this->name = n;
+    this->gift = g;
+    this->partner = n;
+}
+
 void Player::setName(const QString& name) {
     this->name = name;
 }

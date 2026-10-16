@@ -8,6 +8,7 @@ private:
     QString name, gift, partner, assignedName, assignedGift;
 
 public:
+    Player(const QString &n, const QString &g);
     void setName(const QString& name);
     void setGift(const QString& gift);
     void setPartner(const QString& partner);
