@@ -6,9 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>1300</width>
+    <height>750</height>
    </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
@@ -26,28 +32,71 @@
      <rect>
       <x>9</x>
       <y>9</y>
-      <width>782</width>
-      <height>582</height>
+      <width>1290</width>
+      <height>745</height>
      </rect>
     </property>
     <property name="layoutDirection">
      <enum>Qt::LayoutDirection::LeftToRight</enum>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>3</number>
     </property>
-    <widget class="QWidget" name="setupPage">
-     <widget class="QLabel" name="lblAddVerify">
+    <widget class="QWidget" name="initialPage">
+     <widget class="QLabel" name="lblImageInitial">
       <property name="geometry">
        <rect>
-        <x>670</x>
-        <y>370</y>
-        <width>111</width>
-        <height>61</height>
+        <x>410</x>
+        <y>10</y>
+        <width>501</width>
+        <height>441</height>
        </rect>
       </property>
+      <property name="styleSheet">
+       <string notr="true">border-image: url(:/images/santa_image.png);</string>
+      </property>
       <property name="text">
-       <string>Player Successfully Added!</string>
+       <string/>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btnStartInitial">
+      <property name="geometry">
+       <rect>
+        <x>510</x>
+        <y>520</y>
+        <width>300</width>
+        <height>100</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Georgia</family>
+        <pointsize>22</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Start</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="setupPage">
+     <widget class="QLabel" name="lblFeedbackSetup">
+      <property name="geometry">
+       <rect>
+        <x>1070</x>
+        <y>310</y>
+        <width>200</width>
+        <height>200</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Georgia</family>
+        <pointsize>20</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Feedback Label</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignmentFlag::AlignCenter</set>
@@ -59,10 +108,10 @@
      <widget class="QGroupBox" name="groupBox">
       <property name="geometry">
        <rect>
-        <x>190</x>
-        <y>370</y>
-        <width>471</width>
-        <height>211</height>
+        <x>240</x>
+        <y>290</y>
+        <width>750</width>
+        <height>400</height>
        </rect>
       </property>
       <property name="title">
@@ -71,37 +120,55 @@
       <property name="alignment">
        <set>Qt::AlignmentFlag::AlignCenter</set>
       </property>
-      <widget class="QLineEdit" name="txtName">
+      <widget class="QLineEdit" name="txtNameSetup">
        <property name="geometry">
         <rect>
-         <x>150</x>
-         <y>50</y>
-         <width>171</width>
-         <height>41</height>
+         <x>220</x>
+         <y>80</y>
+         <width>350</width>
+         <height>70</height>
         </rect>
        </property>
+       <property name="font">
+        <font>
+         <family>Georgia</family>
+         <pointsize>18</pointsize>
+        </font>
+       </property>
       </widget>
-      <widget class="QPushButton" name="btnAdd">
+      <widget class="QPushButton" name="btnAddSetup">
        <property name="geometry">
         <rect>
-         <x>170</x>
-         <y>120</y>
-         <width>121</width>
-         <height>51</height>
+         <x>240</x>
+         <y>160</y>
+         <width>300</width>
+         <height>100</height>
         </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Georgia</family>
+         <pointsize>22</pointsize>
+        </font>
        </property>
        <property name="text">
         <string>&amp;Add</string>
        </property>
       </widget>
-      <widget class="QLabel" name="lblName">
+      <widget class="QLabel" name="lblNameSetup">
        <property name="geometry">
         <rect>
-         <x>90</x>
-         <y>50</y>
-         <width>51</width>
-         <height>41</height>
+         <x>100</x>
+         <y>80</y>
+         <width>111</width>
+         <height>61</height>
         </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Georgia</family>
+         <pointsize>20</pointsize>
+        </font>
        </property>
        <property name="text">
         <string>Name:</string>
@@ -111,155 +178,221 @@
        </property>
       </widget>
      </widget>
-     <widget class="QLabel" name="lblInstructions">
+     <widget class="QPushButton" name="btnDoneSetup">
       <property name="geometry">
        <rect>
-        <x>20</x>
-        <y>370</y>
-        <width>151</width>
-        <height>211</height>
+        <x>1070</x>
+        <y>580</y>
+        <width>200</width>
+        <height>100</height>
        </rect>
       </property>
-      <property name="text">
-       <string>INSTRUCTIONS PROMPT</string>
-      </property>
-      <property name="wordWrap">
-       <bool>true</bool>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="btnDone">
-      <property name="geometry">
-       <rect>
-        <x>680</x>
-        <y>530</y>
-        <width>101</width>
-        <height>51</height>
-       </rect>
+      <property name="font">
+       <font>
+        <family>Georgia</family>
+        <pointsize>22</pointsize>
+       </font>
       </property>
       <property name="text">
        <string>&amp;Done</string>
       </property>
      </widget>
-     <widget class="QLabel" name="lblImage">
+     <widget class="QLabel" name="lblCounterSetup">
       <property name="geometry">
        <rect>
-        <x>240</x>
-        <y>20</y>
-        <width>371</width>
-        <height>331</height>
+        <x>20</x>
+        <y>310</y>
+        <width>200</width>
+        <height>200</height>
        </rect>
       </property>
-      <property name="styleSheet">
-       <string notr="true">border-image: url(:/images/santa_image.png);</string>
+      <property name="font">
+       <font>
+        <family>Georgia</family>
+        <pointsize>20</pointsize>
+       </font>
       </property>
       <property name="text">
-       <string/>
-      </property>
-     </widget>
-     <widget class="QLabel" name="lblPlayerCount">
-      <property name="geometry">
-       <rect>
-        <x>680</x>
-        <y>440</y>
-        <width>91</width>
-        <height>61</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Player Count: </string>
+       <string>Counter Label</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignmentFlag::AlignCenter</set>
       </property>
      </widget>
-    </widget>
-    <widget class="QWidget" name="detailsPage">
-     <widget class="QLabel" name="lblNameChoosing">
+     <widget class="QLabel" name="lblInstructionsSetup">
       <property name="geometry">
        <rect>
-        <x>40</x>
-        <y>300</y>
-        <width>191</width>
-        <height>31</height>
+        <x>160</x>
+        <y>80</y>
+        <width>950</width>
+        <height>200</height>
        </rect>
       </property>
-      <property name="text">
-       <string>Player Name:</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="lblHasPartner">
-      <property name="geometry">
-       <rect>
-        <x>260</x>
-        <y>360</y>
-        <width>141</width>
-        <height>61</height>
-       </rect>
+      <property name="font">
+       <font>
+        <family>Georgia</family>
+        <pointsize>20</pointsize>
+       </font>
       </property>
       <property name="text">
-       <string>Check this box if you and your partner are playing.</string>
+       <string>Instructions Prompt</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignmentFlag::AlignCenter</set>
       </property>
       <property name="wordWrap">
        <bool>true</bool>
       </property>
      </widget>
-     <widget class="QLabel" name="lblPartner">
+     <zorder>lblFeedbackSetup</zorder>
+     <zorder>groupBox</zorder>
+     <zorder>lblCounterSetup</zorder>
+     <zorder>btnDoneSetup</zorder>
+     <zorder>lblInstructionsSetup</zorder>
+    </widget>
+    <widget class="QWidget" name="detailsPage">
+     <widget class="QLabel" name="lblNameDetails">
       <property name="geometry">
        <rect>
         <x>40</x>
-        <y>410</y>
-        <width>191</width>
-        <height>31</height>
+        <y>215</y>
+        <width>215</width>
+        <height>30</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Georgia</family>
+        <pointsize>20</pointsize>
+       </font>
       </property>
       <property name="text">
-       <string>Partner Name:</string>
+       <string>Player Name</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignmentFlag::AlignCenter</set>
       </property>
      </widget>
-     <widget class="QPushButton" name="btnDone_2">
+     <widget class="QLabel" name="lblHasPartnerDetails">
       <property name="geometry">
        <rect>
-        <x>660</x>
-        <y>540</y>
-        <width>91</width>
-        <height>41</height>
+        <x>50</x>
+        <y>330</y>
+        <width>201</width>
+        <height>81</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Georgia</family>
+        <pointsize>16</pointsize>
+        <italic>true</italic>
+       </font>
+      </property>
+      <property name="text">
+       <string>Check this box if you and your partner are playing.</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignmentFlag::AlignCenter</set>
+      </property>
+      <property name="wordWrap">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="lblPartnerDetails">
+      <property name="geometry">
+       <rect>
+        <x>50</x>
+        <y>490</y>
+        <width>215</width>
+        <height>30</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Georgia</family>
+        <pointsize>20</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Partner Name</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignmentFlag::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btnDoneDetails">
+      <property name="geometry">
+       <rect>
+        <x>1080</x>
+        <y>580</y>
+        <width>200</width>
+        <height>100</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Georgia</family>
+        <pointsize>22</pointsize>
+       </font>
       </property>
       <property name="text">
        <string>&amp;Done</string>
       </property>
      </widget>
-     <widget class="QComboBox" name="cboNameChoosing">
+     <widget class="QComboBox" name="cboNameDetails">
       <property name="geometry">
        <rect>
         <x>40</x>
-        <y>340</y>
-        <width>191</width>
-        <height>41</height>
+        <y>250</y>
+        <width>215</width>
+        <height>50</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <family>Georgia</family>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
      </widget>
-     <widget class="QComboBox" name="cboPartner">
+     <widget class="QComboBox" name="cboPartnerDetails">
       <property name="geometry">
        <rect>
-        <x>40</x>
-        <y>450</y>
-        <width>191</width>
-        <height>41</height>
+        <x>50</x>
+        <y>530</y>
+        <width>215</width>
+        <height>50</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <family>Georgia</family>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
      </widget>
-     <widget class="QCheckBox" name="chkHasPartner">
+     <widget class="QCheckBox" name="chkHasPartnerDetails">
       <property name="enabled">
        <bool>true</bool>
       </property>
       <property name="geometry">
        <rect>
-        <x>290</x>
-        <y>420</y>
-        <width>81</width>
-        <height>31</height>
+        <x>60</x>
+        <y>410</y>
+        <width>170</width>
+        <height>41</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Georgia</family>
+        <pointsize>24</pointsize>
+        <italic>false</italic>
+        <bold>true</bold>
+        <strikeout>false</strikeout>
+        <kerning>true</kerning>
+       </font>
       </property>
       <property name="text">
        <string>&amp;Partner</string>
@@ -268,56 +401,356 @@
        <bool>false</bool>
       </property>
      </widget>
-     <widget class="QTextEdit" name="txtGift">
+     <widget class="QTextEdit" name="txtGiftDetails">
       <property name="geometry">
        <rect>
-        <x>520</x>
-        <y>280</y>
-        <width>251</width>
-        <height>251</height>
+        <x>490</x>
+        <y>290</y>
+        <width>350</width>
+        <height>300</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Georgia</family>
+        <pointsize>18</pointsize>
+       </font>
       </property>
      </widget>
-     <widget class="QLabel" name="lblGift">
+     <widget class="QLabel" name="lblGiftDetails">
       <property name="geometry">
        <rect>
-        <x>440</x>
-        <y>280</y>
-        <width>81</width>
-        <height>41</height>
+        <x>330</x>
+        <y>290</y>
+        <width>151</width>
+        <height>61</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <family>Georgia</family>
+        <pointsize>20</pointsize>
+       </font>
+      </property>
       <property name="text">
-       <string>Gift Ideas: </string>
+       <string>Gift Ideas</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="QPushButton" name="btnAdd_2">
+     <widget class="QPushButton" name="btnAddDetails">
       <property name="geometry">
        <rect>
-        <x>530</x>
-        <y>540</y>
-        <width>91</width>
-        <height>41</height>
+        <x>520</x>
+        <y>600</y>
+        <width>300</width>
+        <height>100</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Georgia</family>
+        <pointsize>22</pointsize>
+       </font>
       </property>
       <property name="text">
        <string>&amp;Add</string>
       </property>
      </widget>
-     <widget class="QLabel" name="lblGiftAdd">
+     <widget class="QLabel" name="lblFeedbackDetails">
       <property name="geometry">
        <rect>
-        <x>430</x>
+        <x>920</x>
+        <y>440</y>
+        <width>300</width>
+        <height>100</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Georgia</family>
+        <pointsize>20</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Feedback Label</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignmentFlag::AlignCenter</set>
+      </property>
+      <property name="wordWrap">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="lblCounterDetails">
+      <property name="geometry">
+       <rect>
+        <x>920</x>
+        <y>290</y>
+        <width>300</width>
+        <height>100</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Georgia</family>
+        <pointsize>20</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Counter Label</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignmentFlag::AlignCenter</set>
+      </property>
+      <property name="wordWrap">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="lblInstructionsDetails">
+      <property name="geometry">
+       <rect>
+        <x>330</x>
+        <y>20</y>
+        <width>950</width>
+        <height>251</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Georgia</family>
+        <pointsize>20</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Instructions Prompt</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+      </property>
+      <property name="wordWrap">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="assignmentPage">
+     <widget class="QLineEdit" name="txtNameAssignment">
+      <property name="geometry">
+       <rect>
+        <x>500</x>
+        <y>180</y>
+        <width>350</width>
+        <height>70</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Georgia</family>
+        <pointsize>18</pointsize>
+       </font>
+      </property>
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="txtGiftAssignment">
+      <property name="geometry">
+       <rect>
+        <x>500</x>
+        <y>260</y>
+        <width>350</width>
+        <height>300</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Georgia</family>
+        <pointsize>18</pointsize>
+       </font>
+      </property>
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="cboChoosingAssignment">
+      <property name="geometry">
+       <rect>
+        <x>110</x>
         <y>340</y>
-        <width>81</width>
-        <height>141</height>
+        <width>215</width>
+        <height>50</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Georgia</family>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+     </widget>
+     <widget class="QLabel" name="lblChoosingAssignment">
+      <property name="geometry">
+       <rect>
+        <x>110</x>
+        <y>280</y>
+        <width>215</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Georgia</family>
+        <pointsize>16</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Who is choosing?</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignmentFlag::AlignCenter</set>
+      </property>
+      <property name="wordWrap">
+       <bool>false</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="lblNameAssignment">
+      <property name="geometry">
+       <rect>
+        <x>500</x>
+        <y>130</y>
+        <width>350</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Georgia</family>
+        <pointsize>20</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:20pt;&quot;&gt;Assigned Player&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btnDrawAssignment">
+      <property name="geometry">
+       <rect>
+        <x>530</x>
+        <y>570</y>
+        <width>300</width>
+        <height>100</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Georgia</family>
+        <pointsize>22</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Draw</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btnClearAssignment">
+      <property name="geometry">
+       <rect>
+        <x>930</x>
+        <y>600</y>
+        <width>101</width>
+        <height>51</height>
        </rect>
       </property>
       <property name="text">
-       <string/>
+       <string>&amp;Clear</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btnDoneAssignment">
+      <property name="geometry">
+       <rect>
+        <x>1080</x>
+        <y>580</y>
+        <width>200</width>
+        <height>100</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Georgia</family>
+        <pointsize>22</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>&amp;Done</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="lblInstructionsAssignment">
+      <property name="geometry">
+       <rect>
+        <x>9</x>
+        <y>-1</y>
+        <width>1261</width>
+        <height>131</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Georgia</family>
+        <pointsize>16</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Instructions Prompt</string>
+      </property>
+      <property name="wordWrap">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="lblCounterAssignment">
+      <property name="geometry">
+       <rect>
+        <x>110</x>
+        <y>420</y>
+        <width>200</width>
+        <height>200</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Georgia</family>
+        <pointsize>20</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Counter Label</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignmentFlag::AlignCenter</set>
+      </property>
+      <property name="wordWrap">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="lblTimerAssignment">
+      <property name="geometry">
+       <rect>
+        <x>970</x>
+        <y>260</y>
+        <width>200</width>
+        <height>200</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Georgia</family>
+        <pointsize>20</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Timer Label</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignmentFlag::AlignCenter</set>
@@ -327,119 +760,13 @@
       </property>
      </widget>
     </widget>
-    <widget class="QWidget" name="assignmentPage">
-     <widget class="QLineEdit" name="txtAssignedName">
-      <property name="geometry">
-       <rect>
-        <x>390</x>
-        <y>250</y>
-        <width>231</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="readOnly">
-       <bool>true</bool>
-      </property>
-     </widget>
-     <widget class="QTextEdit" name="txtAssignedGift">
-      <property name="geometry">
-       <rect>
-        <x>390</x>
-        <y>290</y>
-        <width>231</width>
-        <height>251</height>
-       </rect>
-      </property>
-      <property name="readOnly">
-       <bool>true</bool>
-      </property>
-     </widget>
-     <widget class="QComboBox" name="cboChoosing">
-      <property name="geometry">
-       <rect>
-        <x>40</x>
-        <y>350</y>
-        <width>211</width>
-        <height>31</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QLabel" name="lblChoosing">
-      <property name="geometry">
-       <rect>
-        <x>60</x>
-        <y>290</y>
-        <width>161</width>
-        <height>51</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Who is choosing?&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="lblAssignedName">
-      <property name="geometry">
-       <rect>
-        <x>390</x>
-        <y>200</y>
-        <width>231</width>
-        <height>41</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:20pt;&quot;&gt;Assigned Player&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="btnDraw">
-      <property name="geometry">
-       <rect>
-        <x>90</x>
-        <y>440</y>
-        <width>111</width>
-        <height>51</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>&amp;Draw</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="btnClear">
-      <property name="geometry">
-       <rect>
-        <x>650</x>
-        <y>330</y>
-        <width>101</width>
-        <height>51</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>&amp;Clear</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="btnExit">
-      <property name="geometry">
-       <rect>
-        <x>650</x>
-        <y>420</y>
-        <width>101</width>
-        <height>51</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>&amp;Exit</string>
-      </property>
-     </widget>
-    </widget>
    </widget>
   </widget>
  </widget>
  <tabstops>
-  <tabstop>txtName</tabstop>
-  <tabstop>btnAdd</tabstop>
-  <tabstop>btnDone</tabstop>
+  <tabstop>txtNameSetup</tabstop>
+  <tabstop>btnAddSetup</tabstop>
+  <tabstop>btnDoneSetup</tabstop>
  </tabstops>
  <resources>
   <include location="../resources/resources.qrc"/>

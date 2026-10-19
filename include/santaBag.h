@@ -41,6 +41,7 @@ public:
     void printHelp(); // untouched
 
     bool drawPlayer();
+    bool drawnAlready();
     bool addPlayer(const QString &n);
     bool updatePlayer(const QString &n, const QString &g, const QString &p);
     void setGiver(const QString &n);

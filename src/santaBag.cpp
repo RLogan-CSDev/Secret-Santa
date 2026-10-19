@@ -2,18 +2,8 @@
 #include <random>
 #include <QDebug>
 
+
 // Private functions
-void SantaBag::initPool() {
-    selectionPool = players;
-}
-
-void SantaBag::removeAt(int pos) {
-    if(pos >= 0 && pos < selectionPool.size()) {
-        selectionPool.erase(selectionPool.begin() + pos);
-        playerCount--;      // need to adjust here
-    }
-}
-
 int SantaBag::genRandIndex() {
     std::random_device rd;
     std::mt19937 gen(rd());
@@ -21,99 +11,12 @@ int SantaBag::genRandIndex() {
     return distrib(gen);
 }
 
+
 // Public functions
 SantaBag::SantaBag() {
     playerCount = 0;
     giverPlayer = nullptr;
     assignedPlayer = nullptr;
-}
-
-bool SantaBag::add(const QString &n) {
-    Player tmp(n, n);
-    tmp.setName(n);
-    players.push_back(tmp);
-    playerCount++;
-    return true;
-}
-
-bool SantaBag::add(const QString &n, const QString &g) {
-    Player tmp(n, g);
-    players.push_back(tmp);
-
-    for (auto& p : players) {
-        if (p.getName() == n){
-            p.setGift(g);
-            return true;
-        }
-    }
-    return false;
-}
-
-bool SantaBag::add(QString n, QString partner, bool hasPartner) {
-    if (hasPartner) {
-        for (auto& p : players) {
-            if (p.getName() == n) {
-                p.setPartner(partner);
-                return true;
-            }
-        }
-    }
-    return false;
-}
-
-// void SantaBag::draw() {
-//     bool isValid = false;
-//     int redraw = 0;
-
-//     while (redraw <= MAX_REDRAW && !isValid) {
-//         int rd = genRandIndex();
-//         for (int i = 0; i < players.size(); i++) {
-
-//         }
-//     }
-
-//     while(!isValid) {
-//         isValid = true;
-//         initPool();
-//         for (int i = 0; i < players.size(); i++) {
-//             int rd = genRandIndex();
-//             bool selfDraw = selectionPool[rd].getName() == players[i].getName();
-//             bool partnerDraw = selectionPool[rd].getName() == players[i].getPartner();
-//             while((selfDraw || partnerDraw) && redraw < MAX_REDRAW) {
-//                 rd = genRandIndex();
-//                 redraw++;
-//             }
-//             players[i].setAssignment(selectionPool[rd].getName(), selectionPool[rd].getGift());
-//             removeAt(rd);
-
-//             if (redraw >= MAX_REDRAW) {
-//                 isValid = false;
-//             }
-//         }
-//         redraw = 0;
-//     }
-// }
-
-// QString SantaBag::getAssignedName(QString n) {
-//     for (auto& p : players) {
-//         if (p.getName() == n) {
-//             assignedName = p.getAssignedName();
-//         }
-//     }
-//     return assignedName;
-// }
-
-// QString SantaBag::getAssignedGift(QString n) {
-//     for (auto& p : players) {
-//         if (p.getName() == n) {
-//             assignedGift = p.getAssignedGift();
-//         }
-//     }
-//     return assignedGift;
-// }
-
-int SantaBag::getBagSize() {
-    return players.size();
 }
 
 QString SantaBag::getPlayerNameAt(int index) {
@@ -145,16 +48,8 @@ bool SantaBag::drawPlayer() {
         return false;
     }
 
-    int giverIndex = -1;
-    for(int i = 0; i < players.size(); i++) {
-        if(&players[i] == giverPlayer) {
-            giverIndex = i;
-            qDebug() << "Giver Index is: " << giverIndex;
-        }
-    }
-
-    if(giverIndex != -1 && hasDrawnFlags[giverIndex]) {
-        // Person already gave - prevents multiple clicks on the button.
+    if(drawnAlready()) {
+        // Player has already drawn for their assignment.
         return false;
     }
 
@@ -170,12 +65,30 @@ bool SantaBag::drawPlayer() {
                 assignedName = assignedPlayer->getName();
                 assignedGift = assignedPlayer->getGift();
                 isAssignedFlags[rd] = true;
+                for(int i = 0; i < players.size(); i++) {
+                    if(&players[i] == giverPlayer) {
+                        hasDrawnFlags[i] = true;
+                    }
+                }
                 return true;
             }
         }
         redraw++;
     }
     // All 100 redraws were used.
+    return false;
+}
+
+bool SantaBag::drawnAlready() {
+    for(int i = 0; i < players.size(); i++) {
+        if(&players[i] == giverPlayer) {
+            int giverIndex = i;
+            qDebug() << "giverIndex is " << giverIndex << " and flagged as " << hasDrawnFlags[giverIndex];
+            if(hasDrawnFlags[giverIndex]) {
+                return true;
+            }
+        }
+    }
     return false;
 }
 
@@ -205,7 +118,6 @@ void SantaBag::setGiver(const QString &n) {
             giverPlayer = &player;
         }
     }
-    giverPlayer = nullptr;
 }
 
 QString SantaBag::getAssignedName() const {
