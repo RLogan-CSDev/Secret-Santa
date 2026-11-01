@@ -5,19 +5,16 @@
 
 class Player {
 private:
-    QString name, gift, partner, assignedName, assignedGift;
+    QString name, gift, partner;
 
 public:
     Player(const QString &n, const QString &g);
     void setName(const QString& name);
     void setGift(const QString& gift);
     void setPartner(const QString& partner);
-    void setAssignment(const QString& name, const QString& gift);
-    QString getName();
-    QString getGift();
-    QString getPartner();
-    QString getAssignedName();
-    QString getAssignedGift();
+    QString getName() const;
+    QString getGift() const;
+    QString getPartner() const;
 
 };
 

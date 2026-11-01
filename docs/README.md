@@ -1,7 +1,8 @@
 # Secret Santa Application
 **Developer**: Robert Logan
 
-![Secret Santa App - Prototype UI Page 1](assets/ui_prototype.png)
+![Secret Santa App - Main UI](assets/main_ui.png)
+
 ---
 
 ## Project Overview
@@ -29,7 +30,7 @@ This is the exact conundrum that my Secret Santa application resolves.
 
 ## Tech Stack
 - **Language**: C++17
-- **Libraries**: `std::vector`, `std::random`
+- **Libraries**: `std::vector`, `std::random`, `std::algorithm`
 - **IDE**: Qt Creator
 - **Version Control**: GitHub
 
@@ -39,6 +40,8 @@ instance, and a `SantaBag` instance into separate classes, preventing unprivileg
 to that particular instance's resources.
 - *Composition*: The **has-a** relationship in which the `SantaBag` class **has a** `Player`
 object as part of it's class definition.
-- *Function Overloading*: A single identifier to `add` players to the bag has diverse
-meanings by creating functions with the same name, different parameter lists. This is an
-example of ***compile-time polymorphism***.
+- *Parallel Vectors*: Three vectors run in tandem with each other. One for the players of
+the game, one for the assignment indices, one for tracking if a player has drawn already.
+`Index 0` from all three vectors represents one `Player` object, etc.
+- *Pointer Reference Matching*: Instead of copying objects and variables, giver and receiver
+players reference the memory addresses of the actual players in the game.

@@ -6,17 +6,11 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
-    const QString INSTRUCTIONS_PROMPT = "1. Input your name in the textbox.\n\n"
-                                        "2. Click the Add button.\n\n"
-                                        "3. Repeat with the next person.\n\n"
-                                        "4. Click the Done button when everyone playing has entered their information.\n\n";
+    const QString SANTA_VERIFY = "Please make sure that everyone that is playing has added their information.";
     ui->setupUi(this);
-    //ui->lblFeedbackSetup->setText("");
-    //ui->lblInstructionsSetup->setText(INSTRUCTIONS_PROMPT);
-    //ui->cboPartnerDetails->setVisible(false);
-    //ui->lblPartnerDetails->setVisible(false);
+    ui->lblVerify->setText(SANTA_VERIFY);
     ui->stackedWidget->setCurrentWidget(ui->initialPage);
-
+    setGameState(INITIAL);
 }
 
 MainWindow::~MainWindow()
@@ -35,6 +29,7 @@ void MainWindow::on_btnStartInitial_clicked()
     ui->lblInstructionsSetup->setText(INSTRUCTIONS);
     ui->lblFeedbackSetup->setText("");
     ui->lblCounterSetup->setText("Player Count: 0");
+    setGameState(SETUP);
 }
 
 // SCREEN 2 - Adding Players
@@ -43,7 +38,7 @@ void MainWindow::on_btnAddSetup_clicked()
     QString name = ui->txtNameSetup->text();
     if (name.isEmpty()) {
         ui->lblFeedbackSetup->setText("Name cannot be empty.");
-        ui->lblFeedbackSetup->setStyleSheet("color: red;");
+        ui->lblFeedbackSetup->setStyleSheet("color: #ff6b6b; background-color: rgba(192, 57, 43, 0.3); border-radius: 4px; padding: 6px;");
     }
     else {
         if (santaBag.addPlayer(name)){
@@ -52,7 +47,7 @@ void MainWindow::on_btnAddSetup_clicked()
             ui->txtNameSetup->clear();
             //santaBag.printHelp();
             ui->lblFeedbackSetup->setText("Player added successfully!");
-            ui->lblFeedbackSetup->setStyleSheet("color: green;");
+            ui->lblFeedbackSetup->setStyleSheet("color: #2ecc71; background-color: rgba(39, 174, 96, 0.3); border-radius: 4px; padding: 6px;");
             ui->lblCounterSetup->setText(playerCount);
         }
     }
@@ -78,6 +73,7 @@ void MainWindow::on_btnDoneSetup_clicked()
     int pCount = santaBag.getPlayerCount();
     ui->lblCounterDetails->setText("Player Count: " + QString::number(pCount));
     ui->lblFeedbackDetails->setText("");
+    setGameState(DETAILS);
 }
 
 
@@ -87,29 +83,47 @@ void MainWindow::on_btnAddDetails_clicked()
     QString name = ui->cboNameDetails->currentText();
     QString gift = ui->txtGiftDetails->toPlainText();
     QString partner = ui->cboPartnerDetails->currentText();
+    int pCount = santaBag.getPlayerCount();
+    int index = ui->cboNameDetails->currentIndex();
     if(gift.isEmpty()){
         ui->lblFeedbackDetails->setText("Gift cannot be empty.");
-        ui->lblFeedbackDetails->setStyleSheet("color: red;");
+        ui->lblFeedbackDetails->setStyleSheet("color: #ff6b6b; background-color: rgba(192, 57, 43, 0.3); border-radius: 4px; padding: 6px;");
     }
     else if (!ui->chkHasPartnerDetails) {
         ui->lblFeedbackDetails->setText("You must choose a partner.");
-        ui->lblFeedbackDetails->setStyleSheet("color: red;");
+        ui->lblFeedbackDetails->setStyleSheet("color: #ff6b6b; background-color: rgba(192, 57, 43, 0.3); border-radius: 4px; padding: 6px;");
     }
     else {
         if(santaBag.updatePlayer(name, gift, partner)) {
             //santaBag.printHelp();
             ui->txtGiftDetails->clear();
             ui->lblFeedbackDetails->setText("Gift added successfully!");
-            ui->lblFeedbackDetails->setStyleSheet("color: green;");
+            ui->lblFeedbackDetails->setStyleSheet("color: #2ecc71; background-color: rgba(39, 174, 96, 0.3); border-radius: 4px; padding: 6px;");
             ui->cboNameDetails->setCurrentText("");
             ui->cboPartnerDetails->setCurrentText("");
             ui->chkHasPartnerDetails->setChecked(false);
+            ui->cboNameDetails->setItemData(index, 0, Qt::UserRole - 1);
+            rotation++;
+            pCount = pCount - getRotation();
+            ui->lblCounterDetails->setText("Player Count: " + QString::number(pCount));
         }
     }
 }
 
 void MainWindow::on_btnDoneDetails_clicked()
 {
+    // Before transition, ensure all gifts are added...
+    if(!santaBag.isGiftFull()) {
+        ui->stackedWidget->setCurrentWidget(ui->verifyPage);
+        return;
+    }
+    if(!santaBag.generateAssignments()) {
+        ui->stackedWidget->setCurrentWidget(ui->verifyPage);
+        ui->lblVerify->setText("Could not generate valid assignments.");
+        ui->lblVerify->setStyleSheet("color: #ff6b6b; background-color: rgba(192, 57, 43, 0.3); border-radius: 4px; padding: 6px;");
+        return;
+    }
+
     // Transitions to next screen
     ui->stackedWidget->setCurrentWidget(ui->assignmentPage);
     const QString INSTRUCTIONS = "1. Choose your name in the drop down menu on the left.\n2. Make sure no one is able to see the screen at the same time as you and have your phone or"
@@ -123,7 +137,13 @@ void MainWindow::on_btnDoneDetails_clicked()
     }
     int pCount = santaBag.getPlayerCount();
     ui->lblCounterAssignment->setText("Player Count: " + QString::number(pCount));
+    setRotation(0);
+    setGameState(ASSIGNMENT);
+
+    // Future Upgrades
     ui->lblTimerAssignment->setText("Timer: 20 seconds");
+    ui->lblTimerAssignment->setVisible(false);
+
 }
 
 void MainWindow::on_chkHasPartnerDetails_toggled(bool checked)
@@ -143,20 +163,32 @@ void MainWindow::on_btnDrawAssignment_clicked()
 {
     QString name = ui->cboChoosingAssignment->currentText();
     int index = ui->cboChoosingAssignment->currentIndex();
+    int pCount = santaBag.getPlayerCount();
     santaBag.setGiver(name);
     if(santaBag.drawPlayer()) {
         QString assignedName = santaBag.getAssignedName();
         QString assignedGift = santaBag.getAssignedGift();
         ui->txtNameAssignment->setText(assignedName);
         ui->txtGiftAssignment->setText(assignedGift);
+        ui->txtGiftAssignment->setStyleSheet("background-color: rgba(0, 0, 0, 100); color: white; border: 1px solid #ccc; border-radius: 4px;");
         ui->cboChoosingAssignment->setItemData(index, 0, Qt::UserRole - 1);       // Grays out and makes current item unselectable.
         ui->cboChoosingAssignment->setCurrentText("");
-        qDebug() << "recipient is " << assignedName << " with giver " << name;
+        rotation++;
+        pCount = pCount - rotation;
+        ui->lblCounterAssignment->setText("Player Count: " + QString::number(pCount));
     }
     else {
         ui->txtNameAssignment->clear();
         ui->txtGiftAssignment->setText("Could not complete draw.");
+        ui->txtGiftAssignment->setStyleSheet("color: #ff6b6b; background-color: rgba(192, 57, 43, 0.3); border-radius: 4px; padding: 6px;");
     }
+}
+
+void MainWindow::on_btnClearAssignment_clicked()
+{
+    ui->cboChoosingAssignment->setCurrentText("");
+    ui->txtNameAssignment->clear();
+    ui->txtGiftAssignment->clear();
 }
 
 void MainWindow::on_btnDoneAssignment_clicked()
@@ -164,9 +196,27 @@ void MainWindow::on_btnDoneAssignment_clicked()
     this->close();
 }
 
-void MainWindow::on_btnClear_clicked()
+// SCREEN 5 - All Input Verification
+void MainWindow::on_btnVerify_clicked()
 {
-    ui->cboChoosingAssignment->setCurrentText("");
-    ui->txtNameAssignment->clear();
-    ui->txtGiftAssignment->clear();
+    // Returns to necessary location...
+    int gs = getGameState();
+    switch(gs) {
+    case 1:
+        ui->stackedWidget->setCurrentWidget(ui->initialPage);
+        break;
+    case 2:
+        ui->stackedWidget->setCurrentWidget(ui->setupPage);
+        break;
+    case 3:
+        ui->stackedWidget->setCurrentWidget(ui->detailsPage);
+        break;
+    case 4:
+        ui->stackedWidget->setCurrentWidget(ui->assignmentPage);
+        break;
+    default:
+        ui->lblVerify->setText("Something went wrong.");
+        ui->lblVerify->setStyleSheet("color: #ff6b6b; background-color: rgba(192, 57, 43, 0.3); border-radius: 4px; padding: 6px;");
+        break;
+    }
 }

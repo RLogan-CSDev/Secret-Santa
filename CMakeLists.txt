@@ -33,8 +33,8 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
 
-        include/santaBag.h
-        src/santaBag.cpp
+        include/SantaBag.h
+        src/SantaBag.cpp
         resources/resources.qrc
         include/Player.h
         src/Player.cpp

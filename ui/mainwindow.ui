@@ -16,8 +16,14 @@
     <verstretch>0</verstretch>
    </sizepolicy>
   </property>
+  <property name="font">
+   <font>
+    <family>Georgia</family>
+    <pointsize>18</pointsize>
+   </font>
+  </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Secret Santa</string>
   </property>
   <property name="windowIcon">
    <iconset resource="../resources/resources.qrc">
@@ -43,6 +49,12 @@
      <number>3</number>
     </property>
     <widget class="QWidget" name="initialPage">
+     <property name="styleSheet">
+      <string notr="true">background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, 
+                                stop: 0 #f8f9fa, 
+                                stop: 0.5 #e9ecef, 
+                                stop: 1 #d7e3fc);</string>
+     </property>
      <widget class="QLabel" name="lblImageInitial">
       <property name="geometry">
        <rect>
@@ -74,12 +86,55 @@
         <pointsize>22</pointsize>
        </font>
       </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(0, 170, 0);</string>
+      </property>
       <property name="text">
        <string>Start</string>
       </property>
      </widget>
+     <widget class="QLabel" name="label">
+      <property name="geometry">
+       <rect>
+        <x>50</x>
+        <y>320</y>
+        <width>321</width>
+        <height>301</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border-image: url(:/images/holly.jpg);</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_2">
+      <property name="geometry">
+       <rect>
+        <x>920</x>
+        <y>330</y>
+        <width>321</width>
+        <height>301</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border-image: url(:/images/holly-flipped.jpg);
+</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="setupPage">
+     <property name="styleSheet">
+      <string notr="true">background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, 
+                                stop: 0 #134e5e, 
+                                stop: 1 #71b280);
+color: white;
+</string>
+     </property>
      <widget class="QLabel" name="lblFeedbackSetup">
       <property name="geometry">
        <rect>
@@ -134,6 +189,9 @@
          <family>Georgia</family>
          <pointsize>18</pointsize>
         </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(0, 0, 0, 100); color: white; border: 1px solid #ccc; border-radius: 4px;</string>
        </property>
       </widget>
       <widget class="QPushButton" name="btnAddSetup">
@@ -238,7 +296,7 @@
        <string>Instructions Prompt</string>
       </property>
       <property name="alignment">
-       <set>Qt::AlignmentFlag::AlignCenter</set>
+       <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
       </property>
       <property name="wordWrap">
        <bool>true</bool>
@@ -251,6 +309,12 @@
      <zorder>lblInstructionsSetup</zorder>
     </widget>
     <widget class="QWidget" name="detailsPage">
+     <property name="styleSheet">
+      <string notr="true">background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, 
+                                stop: 0 #870000, 
+                                stop: 1 #190a05);
+color: white;</string>
+     </property>
      <widget class="QLabel" name="lblNameDetails">
       <property name="geometry">
        <rect>
@@ -355,6 +419,9 @@
         <pointsize>12</pointsize>
        </font>
       </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgba(0, 0, 0, 100); color: white; border: 1px solid #ccc; border-radius: 4px;</string>
+      </property>
      </widget>
      <widget class="QComboBox" name="cboPartnerDetails">
       <property name="geometry">
@@ -371,6 +438,9 @@
         <pointsize>12</pointsize>
        </font>
       </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgba(0, 0, 0, 100); color: white; border: 1px solid #ccc; border-radius: 4px;</string>
+      </property>
      </widget>
      <widget class="QCheckBox" name="chkHasPartnerDetails">
       <property name="enabled">
@@ -379,7 +449,7 @@
       <property name="geometry">
        <rect>
         <x>60</x>
-        <y>410</y>
+        <y>420</y>
         <width>170</width>
         <height>41</height>
        </rect>
@@ -415,6 +485,9 @@
         <family>Georgia</family>
         <pointsize>18</pointsize>
        </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgba(0, 0, 0, 100); color: white; border: 1px solid #ccc; border-radius: 4px;</string>
       </property>
      </widget>
      <widget class="QLabel" name="lblGiftDetails">
@@ -535,6 +608,13 @@
      </widget>
     </widget>
     <widget class="QWidget" name="assignmentPage">
+     <property name="styleSheet">
+      <string notr="true">background: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 1, 
+                                stop: 0 #2b0b3d, 
+                                stop: 0.5 #1f1c2c, 
+                                stop: 1 #16222a);
+color: white;</string>
+     </property>
      <widget class="QLineEdit" name="txtNameAssignment">
       <property name="geometry">
        <rect>
@@ -549,6 +629,9 @@
         <family>Georgia</family>
         <pointsize>18</pointsize>
        </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgba(0, 0, 0, 100); color: white; border: 1px solid #ccc; border-radius: 4px;</string>
       </property>
       <property name="readOnly">
        <bool>true</bool>
@@ -569,6 +652,9 @@
         <pointsize>18</pointsize>
        </font>
       </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgba(0, 0, 0, 100); color: white; border: 1px solid #ccc; border-radius: 4px;</string>
+      </property>
       <property name="readOnly">
        <bool>true</bool>
       </property>
@@ -587,6 +673,9 @@
         <family>Georgia</family>
         <pointsize>12</pointsize>
        </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgba(0, 0, 0, 100); color: white; border: 1px solid #ccc; border-radius: 4px;</string>
       </property>
      </widget>
      <widget class="QLabel" name="lblChoosingAssignment">
@@ -658,11 +747,17 @@
      <widget class="QPushButton" name="btnClearAssignment">
       <property name="geometry">
        <rect>
-        <x>930</x>
-        <y>600</y>
-        <width>101</width>
-        <height>51</height>
+        <x>980</x>
+        <y>150</y>
+        <width>200</width>
+        <height>100</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Georgia</family>
+        <pointsize>22</pointsize>
+       </font>
       </property>
       <property name="text">
        <string>&amp;Clear</string>
@@ -735,6 +830,9 @@
       </property>
      </widget>
      <widget class="QLabel" name="lblTimerAssignment">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
       <property name="geometry">
        <rect>
         <x>970</x>
@@ -751,6 +849,46 @@
       </property>
       <property name="text">
        <string>Timer Label</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignmentFlag::AlignCenter</set>
+      </property>
+      <property name="wordWrap">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="verifyPage">
+     <widget class="QPushButton" name="btnVerify">
+      <property name="geometry">
+       <rect>
+        <x>360</x>
+        <y>480</y>
+        <width>461</width>
+        <height>171</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>OK</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="lblVerify">
+      <property name="geometry">
+       <rect>
+        <x>250</x>
+        <y>110</y>
+        <width>671</width>
+        <height>311</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Georgia</family>
+        <pointsize>30</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>TextLabel</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignmentFlag::AlignCenter</set>

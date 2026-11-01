@@ -4,5 +4,7 @@
     </qresource>
     <qresource prefix="/images">
         <file>santa_image.png</file>
+        <file>holly.jpg</file>
+        <file>holly-flipped.jpg</file>
     </qresource>
 </RCC>

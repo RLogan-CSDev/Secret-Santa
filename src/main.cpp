@@ -1,5 +1,5 @@
 #include "mainwindow.h"
-#include "santaBag.h"
+#include "SantaBag.h"
 #include <iostream>
 
 #include <QApplication>

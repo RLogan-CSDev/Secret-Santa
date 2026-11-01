@@ -17,5 +17,9 @@ application's architecture and user experience.
 ## Screen 4: Secret Santa Assignment
 ![Assignment Screen Wireframe](assets/screen4_wireframe.svg)
 
+## Screen 5: Confirmation
+![Confirmation Screen Wireframe](assets/screen5_wireframe.svg)
+#### **Note**: To make sure all gifts are added before moving on to assignment phase
+
 ### Interactivity Diagram
-**Screen 1** -> **Screen 2** -> **Screen 3** -> **Screen 4**
+**Screen 1** -> **Screen 2** -> **Screen 3** -> **Screen 5** (Repeatedly call back to *Screen 3* until condition is met) -> **Screen 4**

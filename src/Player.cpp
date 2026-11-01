@@ -19,17 +19,8 @@ void Player::setPartner(const QString& partner) {
     this->partner = partner;
 }
 
-void Player::setAssignment(const QString& name, const QString& gift) {
-    assignedName = name;
-    assignedGift = gift;
-}
+QString Player::getName() const { return name; }
 
-QString Player::getName() { return name; }
+QString Player::getGift() const { return gift; }
 
-QString Player::getGift() { return gift; }
-
-QString Player::getPartner() { return partner; }
-
-QString Player::getAssignedName() { return assignedName; }
-
-QString Player::getAssignedGift() { return assignedGift; }
+QString Player::getPartner() const { return partner; }

@@ -2,7 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include "santaBag.h"
+#include "SantaBag.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -19,8 +19,6 @@ public:
     ~MainWindow() override;
 
 private slots:
-    void on_btnClear_clicked();
-
     // Screen 1 - Setup
     void on_btnStartInitial_clicked();
 
@@ -36,9 +34,22 @@ private slots:
     // Screen 4 - Secret Santa Assignment
     void on_btnDrawAssignment_clicked();
     void on_btnDoneAssignment_clicked();
+    void on_btnClearAssignment_clicked();
+
+    void on_btnVerify_clicked();
 
 private:
     Ui::MainWindow *ui;
     SantaBag santaBag;
+    int rotation = 0;
+    void setRotation(int r) { rotation = r; }
+    int getRotation() { return rotation; }
+    int gameState;
+    void setGameState(int s) { gameState = s; }
+    int getGameState() { return gameState; }
+    const int INITIAL = 1;
+    const int SETUP = 2;
+    const int DETAILS = 3;
+    const int ASSIGNMENT = 4;
 };
 #endif // MAINWINDOW_H
