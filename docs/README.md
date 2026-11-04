@@ -55,8 +55,10 @@ You do not need Qt Creator or any other development environment to run the appli
 3. Click the `SecretSanta_v1.0_Windows.zip` folder under the **[Assets]** tab on the page.
 4. Navigate to your Downloads folder, unzip the folder.
 5. Click into the `SecretSanta_Portable` folder, then find the `Secret-Santa.exe` file.
+
 **Note**: It is important that all the files remain where they are in the download so that
 the game can run properly.
+
 *To check the file integrity to ensure you have the correct file, please see versions listed below.*
 
 ### Versions
