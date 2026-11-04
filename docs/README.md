@@ -45,3 +45,19 @@ the game, one for the assignment indices, one for tracking if a player has drawn
 `Index 0` from all three vectors represents one `Player` object, etc.
 - *Pointer Reference Matching*: Instead of copying objects and variables, giver and receiver
 players reference the memory addresses of the actual players in the game.
+
+---
+
+## Download & Installation (Windows)
+You do not need Qt Creator or any other development environment to run the application.
+1. Locate the **[Releases]** section on the right-side of the repository page.
+2. Click into the `SecretSanta v1.0 - Initial Release`.
+3. Click the `SecretSanta_v1.0_Windows.zip` folder under the **[Assets]** tab on the page.
+4. Navigate to your Downloads folder, unzip the folder.
+5. Click into the `SecretSanta_Portable` folder, then find the `Secret-Santa.exe` file.
+**Note**: It is important that all the files remain where they are in the download so that
+the game can run properly.
+*To check the file integrity to ensure you have the correct file, please see versions listed below.*
+
+### Versions
+- SecretSanta_v1.0 : Checksum = sha256:f9d6f3a200dbc9b2a4cf55ce38874395cb67c6b0be6d43c23e1b14053a499a77
