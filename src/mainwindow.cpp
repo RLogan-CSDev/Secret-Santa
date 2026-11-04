@@ -23,9 +23,9 @@ void MainWindow::on_btnStartInitial_clicked()
 {
     // Transitions to next screen
     ui->stackedWidget->setCurrentWidget(ui->setupPage);
-    const QString INSTRUCTIONS = "Input a player's name in the textbox.\nClick the Add button to register the player.\n"
-                                 "There is a counter on the left side of the screen to show how many players have been registered.\n"
-                                 "Once everyone has been added, press the Done button.";
+    const QString INSTRUCTIONS = "1. Input a player's name in the textbox.\n2. Click the Add button to register the player.\n"
+                                 "3. There is a counter on the left side of the screen to show how many players have been registered.\n"
+                                 "4. Once everyone has been added, press the Done button.";
     ui->lblInstructionsSetup->setText(INSTRUCTIONS);
     ui->lblFeedbackSetup->setText("");
     ui->lblCounterSetup->setText("Player Count: 0");
@@ -49,6 +49,7 @@ void MainWindow::on_btnAddSetup_clicked()
             ui->lblFeedbackSetup->setText("Player added successfully!");
             ui->lblFeedbackSetup->setStyleSheet("color: #2ecc71; background-color: rgba(39, 174, 96, 0.3); border-radius: 4px; padding: 6px;");
             ui->lblCounterSetup->setText(playerCount);
+            ui->txtNameSetup->setFocus();
         }
     }
 }
@@ -103,10 +104,17 @@ void MainWindow::on_btnAddDetails_clicked()
             ui->cboPartnerDetails->setCurrentText("");
             ui->chkHasPartnerDetails->setChecked(false);
             ui->cboNameDetails->setItemData(index, 0, Qt::UserRole - 1);
+            ui->cboNameDetails->setItemData(index, QColor("#1e293b"), Qt::BackgroundRole);
+
             rotation++;
             pCount = pCount - getRotation();
             ui->lblCounterDetails->setText("Player Count: " + QString::number(pCount));
         }
+    }
+    if(pCount == 0) {
+        ui->lblCounterDetails->setStyleSheet("border: 2px solid #2ecc71;");
+        ui->lblFeedbackDetails->setText("All gifts have been entered.");
+        ui->lblFeedbackDetails->setStyleSheet("color: #34d399; background-color: rgba(5, 150, 105, 0.25); border-radius: 4px; padding: 6px;");
     }
 }
 
@@ -128,7 +136,7 @@ void MainWindow::on_btnDoneDetails_clicked()
     ui->stackedWidget->setCurrentWidget(ui->assignmentPage);
     const QString INSTRUCTIONS = "1. Choose your name in the drop down menu on the left.\n2. Make sure no one is able to see the screen at the same time as you and have your phone or"
                                  " some paper and pen with you to take note of who you have.\n3. Press the Draw button to become someone's Secret Santa.\n"
-                                 "4. After 15 seconds, your assignment will disappear for the next person to get theirs.";
+                                 "4. After you note who you have, click the Clear button.\n5. Send the next person to draw.";
     ui->lblInstructionsAssignment->setText(INSTRUCTIONS);
     ui->cboChoosingAssignment->addItem("", -1);
     for (int i = 0; i < santaBag.getPlayerCount(); i++) {
@@ -172,6 +180,7 @@ void MainWindow::on_btnDrawAssignment_clicked()
         ui->txtGiftAssignment->setText(assignedGift);
         ui->txtGiftAssignment->setStyleSheet("background-color: rgba(0, 0, 0, 100); color: white; border: 1px solid #ccc; border-radius: 4px;");
         ui->cboChoosingAssignment->setItemData(index, 0, Qt::UserRole - 1);       // Grays out and makes current item unselectable.
+        ui->cboChoosingAssignment->setItemData(index, QColor("#1e293b"), Qt::BackgroundRole);
         ui->cboChoosingAssignment->setCurrentText("");
         rotation++;
         pCount = pCount - rotation;
@@ -181,6 +190,11 @@ void MainWindow::on_btnDrawAssignment_clicked()
         ui->txtNameAssignment->clear();
         ui->txtGiftAssignment->setText("Could not complete draw.");
         ui->txtGiftAssignment->setStyleSheet("color: #ff6b6b; background-color: rgba(192, 57, 43, 0.3); border-radius: 4px; padding: 6px;");
+    }
+    if(pCount == 0) {
+        ui->lblCounterAssignment->setStyleSheet("border: 2px solid #2ecc71;");
+        ui->lblTimerAssignment->setText("All Secret Santas have been assigned.");
+        ui->lblTimerAssignment->setStyleSheet("color: #34d399; background-color: rgba(5, 150, 105, 0.25); border-radius: 4px; padding: 6px;");
     }
 }
 
